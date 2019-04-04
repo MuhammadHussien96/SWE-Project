@@ -1,0 +1,20 @@
+function updateuser()
+{
+	require 'connect.php';
+	//$username = trim(htmlspecialchars($_POST['username']));
+	$fname = trim(htmlspecialchars($_POST['fname']));
+	$sname = trim(htmlspecialchars($_POST['sname']));
+	$type = trim(htmlspecialchars($_POST['type']));
+	$password = trim(htmlspecialchars($_POST['password']));
+	$pass = sha1($password);
+
+
+	$name = $_GET['name'];
+	
+		$sql = "UPDATE hospital.users SET `fname`='$fname',`sname`='$sname',`type`='$type',`password`='$pass' WHERE `username`='$name'";
+		$query = mysqli_query($con,$sql);
+		if (!empty($query)) {
+			echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>User is Succesifully Updated</b>";
+
+		}	
+}
