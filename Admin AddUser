@@ -1,0 +1,24 @@
+function adduser()
+{
+	$username = trim(htmlspecialchars($_POST['username']));
+	$fname = trim(htmlspecialchars($_POST['fname']));
+	$sname = trim(htmlspecialchars($_POST['sname']));
+	$type = trim(htmlspecialchars($_POST['type']));
+	$password = trim(htmlspecialchars($_POST['password']));
+	$pass = sha1($password);
+	require 'connect.php';
+	$sql1 = "SELECT * FROM hospital.users WHERE `username`='$username'";
+	$query1 = mysqli_query($con, $sql1);
+	if (mysqli_num_rows($query1)==0) {
+		$sql = "INSERT INTO hospital.users VALUES ('$username','$pass','$fname','$sname','$type')";
+		$query = mysqli_query($con, $sql);
+		if (!empty($query)) {
+			echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>User is Succesifully Added</b>";
+		}
+	}
+	else{
+		echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Choose Unique Name</b>";
+	}
+
+	
+}
