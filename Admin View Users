@@ -1,0 +1,15 @@
+function users()
+{
+	require 'connect.php';
+	$sql = "SELECT * FROM hospital.users";
+	$query = mysqli_query($con, $sql);
+	while ($row = mysqli_fetch_array($query)) {
+		echo "<tr height=20px'>";
+		echo "<td>".$row['username']."</td>";
+		echo "<td>".$row['type']."</td>";
+		echo "<td><center><a href='edituser.php?name=".$row['username']."'><img src='../assets/img/glyphicons-151-edit.png' height='16px' width='17px'></a></center></td>";
+		echo "<td><center><a href='deleteuser.php?name=".$row['username']."'><img src='../assets/img/glyphicons-17-bin.png' height='16px' width='12px'></a></center></td>";
+	
+		echo "</tr>";
+	}
+}
