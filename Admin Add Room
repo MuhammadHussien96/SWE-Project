@@ -1,0 +1,23 @@
+function addroom()
+{
+	$number = trim(htmlspecialchars($_POST['number']));
+	$name = trim(htmlspecialchars($_POST['name']));
+	require 'connect.php';
+	$sql1 = "SELECT * FROM hospital.rooms WHERE `room_name`='$name'";
+	$query1 = mysqli_query($con,$sql1);
+	if (mysqli_num_rows($query1)==0) {
+		$sql = "INSERT INTO hospital.rooms VALUES ('$number','$name','0')";
+		$query = mysqli_query($con,$sql);
+		if (!empty($query)) {
+			echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Room is Succesifully Added</b>";
+		}
+		else{
+			echo "<br>".mysqli_error();
+		}
+	}
+	else{
+		echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Choose Unique Name</b>";
+	}
+
+	
+}
