@@ -1,0 +1,14 @@
+function updateroom()
+{
+	$name = trim(htmlspecialchars($_POST['name']));
+	require 'connect.php';
+
+	$id = $_GET['id'];
+	
+		$sql = "UPDATE hospital.rooms SET `room_name`='$name' WHERE `room_no`='$id'";
+		$query = mysqli_query($con,$sql);
+		if (!empty($query)) {
+			echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Room is Succesifully Updated</b>";
+
+		}	
+}
