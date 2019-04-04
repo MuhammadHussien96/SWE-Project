@@ -1,0 +1,16 @@
+function rooms()
+{
+	require 'connect.php';
+	$sql = "SELECT * FROM hospital.rooms";
+	$query = mysqli_query($con, $sql);
+	while ($row = mysqli_fetch_array($query)) {
+		echo "<tr height=30px'>";
+		echo "<td>".$row['room_no']."</td>";
+		echo "<td>".$row['room_name']."</td>";
+		echo "<td>".$row['patientsinroom']."</td>";
+		echo "<td><center><a href='editroom.php?id=".$row['room_no']."'><img src='../assets/img/glyphicons-151-edit.png' height='16px' width='17px'></a></center></td>";
+		echo "<td><center><a href='deleteroom.php?id=".$row['room_no']."'><img src='../assets/img/glyphicons-17-bin.png' height='16px' width='12px'></a></center></td>";
+	
+		echo "</tr>";
+	}
+}
